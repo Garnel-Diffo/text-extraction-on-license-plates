@@ -1,5 +1,5 @@
 
-# Projet d'Extraction de Texte sur Plaques d’Immatriculation
+# Projet Groupe 3 : Extraction des informations de la Plaques d’Immatriculation
 
 ## Description du Projet
 
