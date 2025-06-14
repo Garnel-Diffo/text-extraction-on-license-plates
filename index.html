@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Extraction de plaque</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f2f4f8;
+      color: #333;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h1 {
+      color: #007bff;
+    }
+
+    .upload-box {
+      border: 2px dashed #007bff;
+      padding: 40px;
+      border-radius: 12px;
+      background-color: #ffffff;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    input[type="file"] {
+      display: block;
+      margin: 20px auto;
+    }
+
+    button {
+      padding: 10px 30px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .result {
+      margin-top: 30px;
+    }
+
+    .loader {
+      border: 6px solid #f3f3f3;
+      border-top: 6px solid #007bff;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin: 20px auto;
+      display: none;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    img {
+      max-width: 100%;
+      margin-top: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .output-text {
+      margin-top: 15px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #28a745;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Extraire le texte d'une plaque d'immatriculation</h1>
+
+  <div class="upload-box">
+    <input type="file" id="imageInput" accept="image/*" />
+    <button onclick="uploadImage()">Analyser</button>
+
+    <div class="loader" id="loader"></div>
+
+    <div class="result" id="result">
+      <img id="uploadedImage" style="display:none;" />
+      <div class="output-text" id="outputText"></div>
+    </div>
+  </div>
+
+  <script>
+    function uploadImage() {
+      const input = document.getElementById('imageInput');
+      const loader = document.getElementById('loader');
+      const resultDiv = document.getElementById('result');
+      const outputText = document.getElementById('outputText');
+      const uploadedImage = document.getElementById('uploadedImage');
+
+      if (!input.files.length) {
+        alert('Veuillez sélectionner une image.');
+        return;
+      }
+
+      const file = input.files[0];
+      const formData = new FormData();
+      formData.append('image', file);
+
+      // Réinitialiser
+      resultDiv.style.display = 'none';
+      outputText.innerText = '';
+      uploadedImage.style.display = 'none';
+
+      loader.style.display = 'block';
+
+      fetch('http://localhost:5000/extract-text', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        loader.style.display = 'none';
+        resultDiv.style.display = 'block';
+
+        if (data.extracted_text) {
+          outputText.innerText = "Texte détecté : " + data.extracted_text;
+        } else if (data.error) {
+          outputText.innerText = "Erreur : " + data.error;
+          outputText.style.color = "red";
+        }
+
+        // Afficher l'image sélectionnée
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          uploadedImage.src = e.target.result;
+          uploadedImage.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      })
+      .catch(err => {
+        loader.style.display = 'none';
+        outputText.innerText = "Erreur : " + err;
+        outputText.style.color = "red";
+      });
+    }
+  </script>
+
+</body>
+</html>
